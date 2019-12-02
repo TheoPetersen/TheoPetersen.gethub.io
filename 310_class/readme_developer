@@ -10,3 +10,5 @@ after initalizing variables in "void loop()", the commented Right and Left toggl
 The "if" statment decides if the toggle on the transmitter is at the midpoint, up, or down. The library is then used to direct the motor direction and speed, depending on how far the toggle is awway from the midpoint.
 
 To see the raw input data from pins 10 an 11, go to top bar menu Tools > Serial Monitor or press Ctl+Shift+M.
+
+The "delay(10);" delays the loop for 10 ns so that the arduino output signals are clear and not jumbled.
