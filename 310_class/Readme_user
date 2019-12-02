@@ -1,0 +1,4 @@
+To use this software, download the given libraries to the to the path: "C:.......\Arduino\libraries\" and download the arduino_code to the arduino file. 
+
+Open arduino_code and comple to the arduino device. 
+You should now be able to control the Arduino from the transmitter.
