@@ -1,0 +1,12 @@
+This code references the AFMotor.h library.
+
+The library is used to initalize the motors in ports 2 and 3 from the motorshield at the frequency of 64 kHz. 
+
+the PWM pins 10 and 11 on the arduino recieve  input signals from the reciever. This is initalized in "void setup()". 
+
+
+after initalizing variables in "void loop()", the commented Right and Left toggle sections do the same things with two different output pins. The input signal from the reciever comes in as "rc1" and "rc3". These are then mapped from the min and max input to the min(0) and max(225) output that the motor can handle.  
+
+The "if" statment decides if the toggle on the transmitter is at the midpoint, up, or down. The library is then used to direct the motor direction and speed, depending on how far the toggle is awway from the midpoint.
+
+To see the raw input data from pins 10 an 11, go to top bar menu Tools > Serial Monitor or press Ctl+Shift+M.
