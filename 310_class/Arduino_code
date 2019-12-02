@@ -1,0 +1,70 @@
+#include <AFMotor.h>
+
+AF_DCMotor motor2(2,MOTOR12_64KHZ);
+AF_DCMotor motor3(3,MOTOR34_64KHZ); 
+
+int rc_channel1 = 10;
+int rc_channel3 = 11;
+
+//////////////////////////////////////////////////////////////////////
+
+void setup() {
+  pinMode(rc_channel1, INPUT);
+  pinMode(rc_channel3, INPUT);
+  Serial.begin(9600);
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+void loop() {
+  int rc1 = pulseIn(rc_channel1, HIGH, 25000);
+  int rc3 = pulseIn(rc_channel3, HIGH);
+  int pwm3 = 0; 
+  int pwm1 = 0;
+  Serial.print(rc3);
+
+ // Right Toggle  ------------------------------------------
+  pwm1 = map(rc1, 963, 1990, 0, 255); //map our speed to 0-255 range 
+  Serial.print(" motor2: ");
+  Serial.print(pwm1);
+  
+  if(rc1==0){
+      motor2.run(RELEASE);
+  }
+  else if(rc1 > 1530){ 
+      motor2.setSpeed(pwm1);
+      motor2.run(FORWARD);
+
+  }
+  else if(rc1 < 1460){
+      motor2.setSpeed(-pwm1);
+      motor2.run(BACKWARD);
+
+  }
+  else{
+      motor2.run(RELEASE);
+  }
+  
+// Left Toggle ---------------------------------------------
+  pwm3 = map(rc3, 963, 1990, 0, 255); //map our speed to 0-255 range
+  Serial.print(" motor3: ");
+  Serial.println(pwm3);  
+
+  if(rc3==0){
+      motor3.run(RELEASE);
+  }
+  else if(rc3 > 1530){
+      motor3.setSpeed(pwm3);
+      motor3.run(FORWARD);
+  }
+  else if(rc3 < 1460){
+      motor3.setSpeed(-pwm3);
+      motor3.run(BACKWARD);
+  }
+  else{
+      motor3.run(RELEASE);
+  }
+  
+  
+  delay(10);
+}
